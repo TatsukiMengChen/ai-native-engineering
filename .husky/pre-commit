@@ -13,11 +13,15 @@ fi
 # Go to the docs directory where biome is installed
 cd docs || exit 1
 
-# Run Biome only on those files using the local dependency via bun
-bun biome check --write $STAGED_FILES
+# Biome currently ignores content/docs/*.mdx; filter them out to avoid hard failure
+BIOME_FILES=$(echo "$STAGED_FILES" | tr ' ' '\n' | grep -v '^content/docs/' | tr '\n' ' ')
+RESULT=0
+if [ -n "$BIOME_FILES" ]; then
+  bun biome check --write $BIOME_FILES
+  RESULT=$?
+fi
 
 # Check exit code
-RESULT=$?
 if [ $RESULT -ne 0 ]; then
   echo "Biome check failed. Please fix the errors before committing."
   exit 1
