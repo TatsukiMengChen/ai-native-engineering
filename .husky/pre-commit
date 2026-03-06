@@ -14,7 +14,7 @@ fi
 cd docs || exit 1
 
 # Biome currently ignores content/docs/*.mdx; filter them out to avoid hard failure
-BIOME_FILES=$(echo "$STAGED_FILES" | tr ' ' '\n' | grep -v '^content/docs/' | tr '\n' ' ')
+BIOME_FILES=$(echo "$STAGED_FILES" | tr ' ' '\n' | grep -v '^content/docs/' | grep -v '^bun\.lock$' | grep -v '^pnpm-lock\.yaml$' | grep -v '^package-lock\.json$' | tr '\n' ' ')
 RESULT=0
 if [ -n "$BIOME_FILES" ]; then
   bun biome check --write $BIOME_FILES
