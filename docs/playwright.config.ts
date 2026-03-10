@@ -16,7 +16,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "npx serve out -l 3000",
+    command: "npm run build && npx serve out -l 3000",
     port: 3000,
     reuseExistingServer: true,
   },

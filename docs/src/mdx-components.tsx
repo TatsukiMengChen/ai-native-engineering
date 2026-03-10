@@ -12,6 +12,11 @@ type HeadingProps = {
   id?: string;
 };
 
+type TableProps = {
+  children?: ReactNode;
+  className?: string;
+};
+
 type ListItemProps = {
   children?: ReactNode;
   className?: string;
@@ -71,6 +76,17 @@ function MdxListItem({ children, className, ...props }: ListItemProps) {
       firstNode,
     ),
     createElement("div", { className: "task-list-content" }, restNodes),
+  );
+}
+
+function MdxTable({ children, className, ...props }: TableProps) {
+  return createElement(
+    "div",
+    {
+      className:
+        "relative overflow-auto overflow-x-auto prose-no-margin my-6 mdx-table-scroll",
+    },
+    createElement("table", { ...props, className }, children),
   );
 }
 
@@ -143,6 +159,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     h5: createHeading("h5"),
     h6: createHeading("h6"),
     li: MdxListItem,
+    table: MdxTable,
     Callout: MdxCallout,
     Mermaid,
   };
