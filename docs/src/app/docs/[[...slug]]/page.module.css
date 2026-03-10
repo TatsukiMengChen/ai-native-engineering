@@ -445,7 +445,8 @@
 }
 
 .customMd div[class~="overflow-auto"][class~="prose-no-margin"] > table {
-  width: 100%;
+  width: max-content;
+  min-width: 100%;
   margin: 0;
   border-collapse: separate;
   border-spacing: 0;
@@ -456,10 +457,12 @@
   div[class~="overflow-auto"][class~="prose-no-margin"]
   > table
   :is(th, td) {
+  min-width: max(12ch, 8.5rem);
   padding: 0.7rem 0.95rem;
   border-bottom: 1px dashed var(--line-divider);
   vertical-align: top;
   text-align: left;
+  overflow-wrap: break-word;
 }
 
 .customMd
