@@ -440,7 +440,8 @@
   border: 1px dashed var(--line-divider);
   border-radius: 0.65rem;
   background: var(--card-bg);
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .customMd div[class~="overflow-auto"][class~="prose-no-margin"] > table {
